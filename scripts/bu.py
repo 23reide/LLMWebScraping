@@ -2,11 +2,13 @@ import asyncio
 
 from browser_use import Agent, ChatOllama, ChatGoogle
 from dotenv import load_dotenv
+from datetime import datetime
 
 load_dotenv()
 
 async def main():
-    with open("task1.txt", "r") as f:
+    promptFile = "../prompts/task1.txt"
+    with open(promptFile, "r") as f:
         task = f.read()
 
     llm = ChatGoogle(model='gemini-3.5-flash-lite')
@@ -19,6 +21,9 @@ async def main():
     )
     history = await agent.run()
     print(history.final_result())
+    
+    with open("../outputs/" + promptFile + "BUOutput" + datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".txt", "w") as f:
+        f.write(str(history.final_result()))
 
 if __name__ == "__main__":
     asyncio.run(main())
