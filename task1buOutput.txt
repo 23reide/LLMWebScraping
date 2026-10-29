@@ -1,0 +1,19 @@
+Research Report for Contractor: Khan Enterprise Construction
+
+1. NYS Incorporation Search (https://apps.dos.ny.gov/publicInquiry/)
+- Subcontractor Name: Khan Enterprise Construction, Inc.
+- DOS ID: 1697823
+- Is incorporated / certified in NYS? Yes (Domestic Business Corporation, Active).
+- Is incorporation currently active? Yes (Active status).
+- Incorporator / Officers: Chief Executive Officer is Mohammad F. Khan. Incorporator details verified via Filing History and saved to `nys_incorporation_khan.pdf`.
+
+2. NYS Department of Taxation and Finance (https://appext20.dos.ny.gov/stwarrants_public/st_search)
+- Subcontractor Search ('Khan Enterprise Construction'): 0 outstanding NYS DTF tax warrants found.
+- Officer Search ('Mohammad F. Khan'): 3 outstanding NYS DTF tax warrants found totaling $5,043.40. Evidence saved to `nys_dtf_tax_warrants_mohammad_khan.pdf`.
+
+3. NYS Department of State UCC Search (https://ucc-efiling.dos.ny.gov/)
+- Lien Search (Debtor Name: Khan Enterprise Construction Inc, Lien Type: Federal Tax Lien):
+  - Found 4 active Federal Tax Liens (including lien #201808060369944).
+  - Downloaded underlying lien documents and notices (available as `Notice of Federal Tax Lien.pdf` / `notice of federal tax lien.pdf` and page snapshot `ucc_lien_201808060369944.pdf`).
+
+All evidence files have been successfully saved and verified.

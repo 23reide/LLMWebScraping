@@ -1,0 +1,81 @@
+10/9
+Installed Crawl4AI, running it myself locally, per github instructions: https://github.com/unclecode/crawl4AI.
+If we need to actually fill in search boxes and click stuff, a browser automation tool might be better.
+
+
+
+10/13
+Try CrawlAI with local model. Timed out with llama3.3 so tried llama3.2 and still timed out so tried
+with plain html site instead of example openai page and it gave results. Still doesn't fix the issue of
+needing to do actions tho.
+
+
+
+10/14
+Target company for testing: Khan Enterprise Construction.
+
+*****Stagehand 
+Had to use local_browser.launch(headless=True). But then ran into issues using local model.
+Need to switch to TS to use local model. Need to debug.
+https://docs.stagehand.dev/v3/configuration/models#ollama
+
+*****Skyvern
+Much less code oriented. Free 5,100 free credits.
+https://app.skyvern.com/agents/wpid_585594511215731894/studio?wr=wr_585597497748281388&wrs=copilot
+Wasn't able to search the first site because of anti-bot provisions.
+Didn't actually search other two sites, just scouted them out and planned how to search them.
+Used 566 credits.
+Need to try a site that doesn't block bot traffic. Need to try with local model to not burn through credits.
+
+Prompt:
+"
+A government agency needs to research a particular potential contractor to ensure they have a good record.
+Please visit the following websites and find the information listed for each website.
+Create a report with evidence of your findings (screenshot and/or pdf of the site) and the answers to the questions associated with the website.
+
+Websites:
+NYS Incorporation  
+https://apps.dos.ny.gov/publicInquiry/ 
+(search by subcontractor’s name) 
+Is the subcontractor incorporated in the state or certified to do business in NYS.  Is the incorporation currently active.  Who is listed as the incorporator and is that individual one of the officers listed in Passport. 
+
+NYS Department of Taxation and Finance https://appext20.dos.ny.gov/stwarrants_public/st_search
+(search by names of subcontractor, its officers, subsidiary/affiliate, other companies owned by the officers of the subcontractor) 
+Are there any outstanding NYS DTF tax warrants.  (We leave the search option as listed, searching by Base Word and Open Warrant Notice Status.)
+If a name is listed, the record must be selected to open the search result. 
+
+NYS Department of State UCC Search 
+https://ucc-efiling.dos.ny.gov/
+(search by name of subcontractor, its officers listed in Passport and affiliated/subsidiary companies, companies owned by officers) 
+We currently query this website using the Lien Search option in the Additional Options section and search by Debtor Name.  
+In the Advance Search Options section, we select Lien Type: Federal Tax Lien and leave all other options as is (copies of all lien and release must be downloaded and saved).  
+"
+
+*****Browser Use
+Very nice notes/explanation as it's running in terminal.
+But was unable to interact with github and unable to use screenshots (with llama3.1) so went off the rails and hallucinated about what the prompt even was.
+
+
+
+10/15
+Pulled multimodal Ollama model qwen3.5:4b.
+
+*****Browser use
+Keeps going off the rails and forgetting the initial prompt with local models.
+Also takes a really long time. Using API model might help.
+
+
+
+10/19
+So apparently Gemini API keys have a free tier though it's obviously low priority so hard to use high-demand models.
+3.8 flash and 3.6 flash were too busy and couldn't connect but 3.5-flash-lite did fine.
+
+Found webvoyager's repo which includes its prompt which may be helpful: https://github.com/MinorJerry/WebVoyager/blob/main/prompts.py.
+Webvoyager itself is a tool we could use but I think browser use is kind of the same thing but more recent/advanced.
+
+*****Browser use
+Starter code github star example worked with 3.5-flash-lite free gemini api key.
+Tried with task1.txt which is basically prompt above but specifiying Khan Enterprise Construction.
+Able to navigate through all websites and complete captchas and not run into bot detection.
+Saved response in task1buOutput.txt. It says it saved evidence as pdfs, but I don't see any created pdfs.
+However, all collected info seems correct based on manual verification.

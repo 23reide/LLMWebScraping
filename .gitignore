@@ -1,0 +1,9 @@
+__pycache__/
+browser-data/
+cyphy/
+har/
+node_modules/
+temp/
+video/
+
+.env
