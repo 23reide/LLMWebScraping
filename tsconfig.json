@@ -8,5 +8,5 @@
     "types": ["node"],
     "noEmit": true
   },
-  "include": ["stagehand.ts"]
+  "include": ["scripts/stagehand.ts"]
 }
