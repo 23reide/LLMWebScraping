@@ -1,5 +1,7 @@
 # LLM Tools
 
+[Tool evaluation notes](https://vanderbilt365-my.sharepoint.com/:w:/g/personal/emma_reid_vanderbilt_edu/IQC4NBQ6WMCjS47Cl8g_aCLXAa_YP7-nLkHJ092Zw24L0iY?e=U9ISvg)
+
 `bu.py` contains BrowserUse script (requires .env setup)
 ```
 # .env file
@@ -24,3 +26,9 @@ OLLAMA_SUPPORTS_VISION=false
 `task1.txt` - first draft prompt
 
 `task1buOutput.txt` - output from feeding `task1.txt` to BrowserUse
+
+# Other Project Docs
+
+[Informal project notes](https://vanderbilt365-my.sharepoint.com/:w:/g/personal/emma_reid_vanderbilt_edu/IQDJqkImELljTISCwKXPm3NNAavd9nbYxQfL0duw6xS7d4c?e=5xcUfM)
+
+[Overleaf project](https://www.overleaf.com/project/6abfc789e05a6864e22e68c1)
