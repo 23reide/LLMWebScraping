@@ -1,0 +1,3 @@
+US General Services Administration (SAM.gov) 
+https://sam.gov/search/?page=1&pageSize=25&sort=-relevance&index=ex&sfm%5BsimpleSearch%5D%5BkeywordRadio%5D=ALL&sfm%5BsimpleSearch%5D%5BkeywordEditorTextarea%5D=&sfm%5Bstatus%5D%5Bis_active%5D=true&sfm%5Bstatus%5D%5Bis_inactive%5D=false
+We search by the name of the subcontractor, its officers, affiliated/subsidiaries and companies owned by the officers in the Exclusions subsection in the Entity Information section. 

@@ -1,0 +1,3 @@
+NYC Department of Finance ACRIS https://acrisweb.csc.nycnet/DS/DocumentSearch/Index
+ (If Login popup box appears, select “Enter as Guest”) 
+We select the Party Name option.  In the “Selected Document Class” we select UCC and Federal Liens. We search by the name of the subcontractor, its officers, affiliated/subsidiary, companies owned by officers.   

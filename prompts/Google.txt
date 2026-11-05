@@ -1,0 +1,3 @@
+Google 
+Google News and general Google search by the name of the subcontractor, its officers, parent company, subsidiaries/affiliates, companies owned by officers.
+We also query news articles from the NYTimes, NY Daily New, NY Post newspapers.

@@ -1,0 +1,4 @@
+NYC Department of Buildings, Buildings Information Systems – Skilled Trades Licenses 
+https://a810-bisweb.nyc.gov/bisweb/LicenseTypeServlet?vlfirst=N
+(electrical firms, general contractors, plumbing, elevator companies, riggers, site safety, sign hangers) 
+We query this site to determine if the subcontractor has a current license to perform work as an electrical firm (hot wiring), plumbing service, elevator company.  Some licenses are under an individual’s name such as Master Plumber.

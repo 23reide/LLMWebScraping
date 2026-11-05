@@ -1,0 +1,4 @@
+NYS Department of State Division of Licensing Services 
+https://appext20.dos.ny.gov/lcns_public/chk_load
+(for Security Guard companies) 
+We search by the subcontractor’s name by clicking on the By Business Name option and entering the subcontractor’s name.  We select “[--All LICENSE TYPES--] from the bottom of the dropdown list.  We then select the ID Number of the company (if present) from the list.  The subcontractor must have a Roster containing the names of individual security guards.

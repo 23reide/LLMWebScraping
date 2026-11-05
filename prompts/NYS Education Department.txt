@@ -1,0 +1,8 @@
+NYS Education Department, Office of the Professions - Verification Search 
+https://eservices.nysed.gov/professions/verification-search
+(Used to determine if a business or individual is authorized to do business in NYS providing the following services: Architecture, Engineers, Land Surveying, Landscape Architecture, Geology authorized to do business in NYS)  
+
+We select “Business Entity” in the Search by option
+We enter the name of the subcontractor in the “Profession” search box. 
+
+For individual licenses (especially Architects) we select “Licensee Name” in the Search by option and “Architect” in the Profession search box, then enter the individual name in the box below.  
