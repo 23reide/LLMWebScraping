@@ -1,4 +1,28 @@
-# LLM Tools
+# UI
+
+Start UI:
+
+```
+# Run from project root
+steamlit run app.py
+```
+
+`app.py` holds a Streamlit app.
+
+`prompt_store.py` holds the logic for adding/deleting/editing prompts from the UI.
+
+
+# Prompts
+
+Prompts used by UI are in `/prompts` (task1.txt is not used by UI)
+
+Outputs from UI run script are in `./outputs` along with the prompt used in the last run `_lastTask.txt`.
+
+`task1.txt` - first draft prompt
+
+`task1buOutput.txt` - output from feeding `task1.txt` to BrowserUse
+
+# LLM Tools in `/scripts`
 
 [Tool evaluation notes](https://vanderbilt365-my.sharepoint.com/:w:/g/personal/emma_reid_vanderbilt_edu/IQC4NBQ6WMCjS47Cl8g_aCLXAa_YP7-nLkHJ092Zw24L0iY?e=U9ISvg)
 
@@ -20,12 +44,6 @@ OLLAMA_SUPPORTS_VISION=false
 
 `stagehand.ts` contains Stagehand script
 >(Stagehand can only use different models if written in TypeScript, hence the .ts file and package json files.)
-
-# Prompts
-
-`task1.txt` - first draft prompt
-
-`task1buOutput.txt` - output from feeding `task1.txt` to BrowserUse
 
 # Other Project Docs
 
