@@ -1,0 +1,3 @@
+NYS Unified Court Systems -County Filing and JDLS Search
+https://iapps.courts.state.ny.us/webccos/newyorkcc/countyFilingSearch
+We check Individuals and Corporations to see if there are any outstanding NYS Commissioner of Labor judgments associates with the subcontractor, its officers, and companies owned by the officers.

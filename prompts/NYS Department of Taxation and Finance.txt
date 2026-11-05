@@ -1,0 +1,5 @@
+NYS Department of Taxation and Finance
+https://uccfilings.dos.ny.gov/UCCSTW/
+(search by names of subcontractor, its officers, subsidiary/affiliate, other companies owned by the officers of the subcontractor)
+Are there any outstanding NYS DTF tax warrants. (We leave the search option as listed, searching by Base Word and Open Warrant Notice Status.)
+If a name is listed, the record must be selected to open the search result.

@@ -1,0 +1,5 @@
+NYS Department of State UCC Search
+https://ucc-efiling.dos.ny.gov/
+(search by name of subcontractor, its officers listed in Passport and affiliated/subsidiary companies, companies owned by officers)
+We currently query this website using the Lien Search option in the Additional Options section and search by Debtor Name.
+In the Advance Search Options section, we select Lien Type: Federal Tax Lien and leave all other options as is (copies of all lien and release must be downloaded and saved).

@@ -1,0 +1,7 @@
+NYS Department of State NYSDOL Debarments
+https://apps.labor.ny.gov/EDList/searchPage.do
+ (search by name of subcontractor, subsidiary/affiliated companies and companies owned by officers) 
+There are 2 debarment lists here to search 
+-DOL (Department of Labor prevailing wage 5-year debarments) and 
+-WCB (Workers Compensation Board 1-year debarments).  
+We usually check using Employer Name or EIN (however employer name gives us a broader search result).
