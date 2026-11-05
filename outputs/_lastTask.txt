@@ -1,0 +1,20 @@
+A government agency needs to research a particular potential contractor to ensure they have a good record.
+Please visit the following websites and find the information requested from each website for the contractor/associated company/owners listed below.
+Create a report with evidence of your findings (screenshot and/or pdf of the site) and the answers to the questions associated with the website.
+If there is no entry on a website for the contractor, please also provide evidence of that.
+
+
+Company details:
+Khan Enterprise Construction
+Websites:
+
+NYS Department of Taxation and Finance
+https://uccfilings.dos.ny.gov/UCCSTW/
+(search by names of subcontractor, its officers, subsidiary/affiliate, other companies owned by the officers of the subcontractor)
+Are there any outstanding NYS DTF tax warrants. (We leave the search option as listed, searching by Base Word and Open Warrant Notice Status.)
+If a name is listed, the record must be selected to open the search result.
+
+NYS Incorporation
+https://apps.dos.ny.gov/publicInquiry/
+(search by subcontractor's name)
+Is the subcontractor incorporated in the state or certified to do business in NYS. Is the incorporation currently active. Who is listed as the incorporator and is that individual one of the officers listed in Passport.

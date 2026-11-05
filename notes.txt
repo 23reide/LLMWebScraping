@@ -79,3 +79,17 @@ Tried with task1.txt which is basically prompt above but specifiying Khan Enterp
 Able to navigate through all websites and complete captchas and not run into bot detection.
 Saved response in task1buOutput.txt. It says it saved evidence as pdfs, but I don't see any created pdfs.
 However, all collected info seems correct based on manual verification.
+
+
+
+
+11/5
+UI built and working.
+It can run bu.py flow, though getting a lot of model unavailable due to high demand atm so not getting an actual report.
+
+Potential improvements:
+- Make loading screen freeze or block UI.
+- Show total prompt while waiting for report.
+- Instead of saving full prompt to _lastTask.txt, save it to task-yyyy-mm-dd-time so it can be matched to reports.
+- Be able to revert prompt changes? (currently this could be done manually using git history)
+- Batch company query not supported/suggested to encourage human in the loop for each vendor but could be implemented as an option.
