@@ -1,3 +1,4 @@
+import os
 import sys
 from pathlib import Path
 
@@ -60,12 +61,33 @@ if st.button(label="Get report"):
 
         import bu  # imported lazily so the UI loads even if deps are missing
 
+        # Resolve the Google API key: prefer Streamlit secrets (set in
+        # .streamlit/secrets.toml locally, or the app's Secrets box when
+        # deployed), then fall back to the environment / .env for plain local
+        # runs. Passing it explicitly means the key is found when published,
+        # where .env files are not available.
+        google_api_key = None
+        try:
+            google_api_key = st.secrets.get("GOOGLE_API_KEY")
+        except Exception:
+            # st.secrets raises if no secrets file exists; fall back to env.
+            google_api_key = None
+        if not google_api_key:
+            google_api_key = os.environ.get("GOOGLE_API_KEY")
+
+        if not google_api_key:
+            st.error(
+                "No Google API key found. Add GOOGLE_API_KEY to "
+                ".streamlit/secrets.toml (or the app's Secrets when deployed)."
+            )
+            st.stop()
+
         st.info("Running the browser agent — this can take several minutes...")
 
         # Run the agent on a background thread and stream its console output
         # (logging + stdout/stderr) into a live-updating area. This is all
         # in-process, so it behaves the same locally or on a hosted server.
-        run = bu.start_report(task)
+        run = bu.start_report(task, api_key=google_api_key)
 
         st.subheader("Console output")
         # Fixed-height, scrollable box so long logs don't push the page down.

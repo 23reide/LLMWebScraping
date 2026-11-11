@@ -37,7 +37,9 @@ def bu(monkeypatch, tmp_path):
     outputs = tmp_path / "outputs"
     monkeypatch.setattr(bu, "_OUTPUTS_DIR", outputs)
     monkeypatch.setattr(
-        bu, "_build_agent", lambda task, file_system_path: _FakeAgent(f"RESULT::{task}")
+        bu,
+        "_build_agent",
+        lambda task, file_system_path, api_key=None: _FakeAgent(f"RESULT::{task}"),
     )
     return bu, outputs
 
@@ -46,6 +48,19 @@ def test_run_report_passes_task_through(bu):
     module, _ = bu
     result = module.run_report("find the thing")
     assert result == "RESULT::find the thing"
+
+
+def test_api_key_is_threaded_to_build_agent(bu, monkeypatch):
+    module, _ = bu
+    seen = {}
+
+    def _spy(task, file_system_path, api_key=None):
+        seen["api_key"] = api_key
+        return _FakeAgent("ok")
+
+    monkeypatch.setattr(module, "_build_agent", _spy)
+    module.run_report("task", api_key="SECRET-KEY-123")
+    assert seen["api_key"] == "SECRET-KEY-123"
 
 
 def test_run_report_writes_output_file(bu):
@@ -82,7 +97,9 @@ def test_start_report_captures_errors(bu, monkeypatch):
         async def run(self):
             raise RuntimeError("agent exploded")
 
-    monkeypatch.setattr(module, "_build_agent", lambda task, file_system_path: _BoomAgent())
+    monkeypatch.setattr(
+        module, "_build_agent", lambda task, file_system_path, api_key=None: _BoomAgent()
+    )
 
     run = module.start_report("will fail")
     while run.is_alive():
@@ -111,7 +128,9 @@ def test_start_report_captures_nonpropagating_logs(bu, monkeypatch):
             logging.getLogger("browser_use").info("agent step complete")
             return _FakeHistory("done")
 
-    monkeypatch.setattr(module, "_build_agent", lambda task, file_system_path: _LoggingAgent())
+    monkeypatch.setattr(
+        module, "_build_agent", lambda task, file_system_path, api_key=None: _LoggingAgent()
+    )
 
     run = module.start_report("log please")
     collected = []
@@ -143,7 +162,9 @@ def test_zip_run_evidence_packages_all_files(bu, monkeypatch):
             return _FakeHistory("done")
 
     monkeypatch.setattr(
-        module, "_build_agent", lambda task, file_system_path: _EvidenceAgent(file_system_path)
+        module,
+        "_build_agent",
+        lambda task, file_system_path, api_key=None: _EvidenceAgent(file_system_path),
     )
 
     run = module.start_report("gather")
