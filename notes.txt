@@ -93,3 +93,12 @@ Potential improvements:
 - Instead of saving full prompt to _lastTask.txt, save it to task-yyyy-mm-dd-time so it can be matched to reports.
 - Be able to revert prompt changes? (currently this could be done manually using git history)
 - Batch company query not supported/suggested to encourage human in the loop for each vendor but could be implemented as an option.
+
+
+11/11
+Ran model without rate limiting and got report.
+Found that evidence is in temp folder on disk so moved into outputs and changed script to save evidence.
+
+UI Improvements:
+- Show console output (which shows total prompt)
+- Make report evidence downloadable in preperation for publishing the app

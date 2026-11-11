@@ -5,34 +5,22 @@ If there is no entry on a website for the contractor, please also provide eviden
 
 
 Company details:
-nathan enterprises llc
+Khan Enterprise Construction
 Websites:
 
-NYS Department of State NYSDOL Debarments
-https://apps.labor.ny.gov/EDList/searchPage.do
- (search by name of subcontractor, subsidiary/affiliated companies and companies owned by officers) 
-There are 2 debarment lists here to search 
--DOL (Department of Labor prevailing wage 5-year debarments) and 
--WCB (Workers Compensation Board 1-year debarments).  
-We usually check using Employer Name or EIN (however employer name gives us a broader search result).
+Google 
+Google News and general Google search by the name of the subcontractor, its officers, parent company, subsidiaries/affiliates, companies owned by officers.
+We also query news articles from the NYTimes, NY Daily New, NY Post newspapers.
 
-NYS Department of State UCC Search
-https://ucc-efiling.dos.ny.gov/
-(search by name of subcontractor, its officers listed in Passport and affiliated/subsidiary companies, companies owned by officers)
-We currently query this website using the Lien Search option in the Additional Options section and search by Debtor Name.
-In the Advance Search Options section, we select Lien Type: Federal Tax Lien and leave all other options as is (copies of all lien and release must be downloaded and saved).
+Google Advance Search https://www.google.ca/advanced_search
+The name of the subcontractor, its officers, parent company, subsidiaries/affiliates, companies owned by the officers 
+We narrow our search here by adding .gov in the “Site or domain” dialogue box.
 
-NYS Department of Taxation and Finance
-https://uccfilings.dos.ny.gov/UCCSTW/
-(search by names of subcontractor, its officers, subsidiary/affiliate, other companies owned by the officers of the subcontractor)
-Are there any outstanding NYS DTF tax warrants. (We leave the search option as listed, searching by Base Word and Open Warrant Notice Status.)
-If a name is listed, the record must be selected to open the search result.
+NYC Business Integrity Commission (BIC) 
+https://www.nyc.gov/site/bic/industries/trade-waste-denied-companies.page
+We check to see if any of the companies are listed on the agency’s Trade Waste Denied Companies drop down alphabetical list.
 
-NYS Incorporation
-https://apps.dos.ny.gov/publicInquiry/
-(search by subcontractor's name)
-Is the subcontractor incorporated in the state or certified to do business in NYS. Is the incorporation currently active. Who is listed as the incorporator and is that individual one of the officers listed in Passport.
-
-NYS Unified Court Systems -County Filing and JDLS Search
-https://iapps.courts.state.ny.us/webccos/newyorkcc/countyFilingSearch
-We check Individuals and Corporations to see if there are any outstanding NYS Commissioner of Labor judgments associates with the subcontractor, its officers, and companies owned by the officers.
+NYC Department of Buildings, Buildings Information Systems – Skilled Trades Licenses 
+https://a810-bisweb.nyc.gov/bisweb/LicenseTypeServlet?vlfirst=N
+(electrical firms, general contractors, plumbing, elevator companies, riggers, site safety, sign hangers) 
+We query this site to determine if the subcontractor has a current license to perform work as an electrical firm (hot wiring), plumbing service, elevator company.  Some licenses are under an individual’s name such as Master Plumber.

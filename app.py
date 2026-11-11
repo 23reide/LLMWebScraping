@@ -60,14 +60,72 @@ if st.button(label="Get report"):
 
         import bu  # imported lazily so the UI loads even if deps are missing
 
-        with st.spinner("Running the browser agent — this can take several minutes..."):
-            try:
-                result = bu.run_report(task)
-                st.success("Report complete. Saved to ./outputs")
-                st.subheader("Report")
-                st.markdown(result)
-            except Exception as exc:  # surface agent/runtime errors in the UI
-                st.error(f"The report run failed: {exc}")
+        st.info("Running the browser agent — this can take several minutes...")
+
+        # Run the agent on a background thread and stream its console output
+        # (logging + stdout/stderr) into a live-updating area. This is all
+        # in-process, so it behaves the same locally or on a hosted server.
+        run = bu.start_report(task)
+
+        st.subheader("Console output")
+        # Fixed-height, scrollable box so long logs don't push the page down.
+        log_box = st.container(height=320)
+        log_area = log_box.empty()
+        log_lines: list[str] = []
+
+        # Keep only the tail so the page stays responsive on long runs.
+        _MAX_LINES = 500
+
+        def _render_logs() -> None:
+            if log_lines:
+                log_area.code("\n".join(log_lines[-_MAX_LINES:]), language="log")
+
+        with st.spinner("Working..."):
+            while run.is_alive():
+                for line in run.stream(timeout=0.2):
+                    log_lines.append(line)
+                _render_logs()
+            # Drain anything emitted between the last check and thread exit.
+            for line in run.stream(timeout=0.2):
+                log_lines.append(line)
+            _render_logs()
+
+        if run.error is not None:
+            st.error(f"The report run failed: {run.error}")
+        else:
+            st.success("Report complete. Saved to ./outputs")
+            st.subheader("Report")
+            st.markdown(run.result or "")
+
+            # Offer the full run folder (report text + all evidence) as a zip.
+            # The zip is built to a temp file on disk (flat memory use even for
+            # large screenshot sets), then handed to the download button so the
+            # browser can fetch it — this works whether Streamlit runs locally
+            # or on a hosted server where the files live on the server's disk.
+            if run.run_dir is not None:
+                import os as _os
+
+                try:
+                    zip_path = bu.zip_run_evidence(run.run_dir)
+                    try:
+                        with open(zip_path, "rb") as fh:
+                            archive_bytes = fh.read()
+                        st.download_button(
+                            label="Download report + evidence (.zip)",
+                            data=archive_bytes,
+                            file_name=f"{run.run_dir.name}.zip",
+                            mime="application/zip",
+                        )
+                        st.caption(f"Evidence saved on the server at: {run.run_dir}")
+                    finally:
+                        # The evidence stays in ./outputs; only the throwaway
+                        # temp archive is removed.
+                        try:
+                            _os.remove(zip_path)
+                        except OSError:
+                            pass
+                except Exception as exc:  # don't let packaging failure hide the report
+                    st.warning(f"Could not package evidence for download: {exc}")
 
 st.divider()
 

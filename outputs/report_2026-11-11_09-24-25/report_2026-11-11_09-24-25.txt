@@ -1,0 +1,33 @@
+I have completed the research for 'Khan enterprise construction'. 
+
+1. **NYS Department of State UCC Search**: Results found. Evidence saved in `nys_ucc_search_results.pdf`.
+2. **NYS Department of Taxation and Finance**: No outstanding tax warrants found. Evidence saved in `nys_tax_warrant_search_results.pdf`.
+3. **NYS Incorporation**: 'KHAN ENTERPRISE CONSTRUCTION, INC.' is incorporated in New York State and is currently Active. Incorporator information is not available on the public inquiry portal, and I could not cross-reference with 'Passport' as no such document/file was provided. Entity details saved in `nys_incorporation_details.pdf`.
+
+A full summary report is available in `report.md`.
+
+Attachments:
+
+report.md:
+
+# Research Report: Khan Enterprise Construction
+
+## 1. NYS Department of State UCC Search
+- **Status:** Results found.
+- **Evidence:** `nys_ucc_search_results.pdf`
+- **Summary:** UCC search was performed for 'Khan enterprise construction' using the 'Debtor Name' criteria for Federal Tax Liens. Results were retrieved.
+
+## 2. NYS Department of Taxation and Finance
+- **Status:** No outstanding tax warrants found.
+- **Evidence:** `nys_tax_warrant_search_results.pdf`
+- **Summary:** Search for 'Khan enterprise construction' returned 0 results for outstanding NYS DTF tax warrants.
+
+## 3. NYS Incorporation
+- **Status:** Entity found.
+- **Evidence:** `nys_incorporation_details.pdf`, `nys_incorporation_search_results.pdf`
+- **Entity Name:** KHAN ENTERPRISE CONSTRUCTION, INC.
+- **DOS ID:** 1697823
+- **Entity Status:** ACTIVE
+- **Entity Type:** DOMESTIC BUSINESS CORPORATION
+- **Date of Initial DOS Filing:** 01/27/1993
+- **Summary:** The subcontractor is incorporated in New York State and is currently active. The incorporator details are not publicly displayed on the standard inquiry page.
