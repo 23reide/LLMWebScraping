@@ -1,0 +1,108 @@
+\n--- NYS DOS SEARCH RESULTS ---\n
+{
+    "status": "success",
+    "search_term": "nathan enterprises llc",
+    "total_results": 12,
+    "pages_reviewed": 3,
+    "all_pages_reviewed": true,
+    "notes": "All 12 matching entities across 3 pages were successfully reviewed and extracted.",
+    "page_confirmation": "A total of 12 entities were found.",
+    "results": [
+        {
+            "company_name": "BRENDA & NATHAN ENTERPRISES LLC",
+            "dos_id": "4030793",
+            "entity_type": "DOMESTIC LIMITED LIABILITY COMPANY",
+            "status": "Active",
+            "filing_date": "12/15/2010",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHAN & SARAH'S ENTERPRISES, INC.",
+            "dos_id": "667648",
+            "entity_type": "DOMESTIC BUSINESS CORPORATION",
+            "status": "Inactive",
+            "filing_date": "12/02/1980",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHAN BUSCH ENTERPRISES, INC.",
+            "dos_id": "2697340",
+            "entity_type": "DOMESTIC BUSINESS CORPORATION",
+            "status": "Active",
+            "filing_date": "11/08/2001",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHAN CHERA ENTERPRISES, INC.",
+            "dos_id": "431538",
+            "entity_type": "DOMESTIC BUSINESS CORPORATION",
+            "status": "Inactive",
+            "filing_date": "04/19/1977",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHAN DOLCINE ENTERPRISES LLC",
+            "dos_id": "5863570",
+            "entity_type": "DOMESTIC LIMITED LIABILITY COMPANY",
+            "status": "Active",
+            "filing_date": "10/23/2020",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHAN E. DEVORE ENTERPRISES LLC",
+            "dos_id": "4503274",
+            "entity_type": "DOMESTIC LIMITED LIABILITY COMPANY",
+            "status": "Active",
+            "filing_date": "12/19/2013",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHAN ENTERPRISES LLC",
+            "dos_id": "4286372",
+            "entity_type": "DOMESTIC LIMITED LIABILITY COMPANY",
+            "status": "Active",
+            "filing_date": "08/21/2012",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHAN JONES ENTERPRISES, LLC",
+            "dos_id": "3760824",
+            "entity_type": "DOMESTIC LIMITED LIABILITY COMPANY",
+            "status": "Active",
+            "filing_date": "01/08/2009",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHAN ROSENBLATT ENTERPRISES LTD.",
+            "dos_id": "707212",
+            "entity_type": "DOMESTIC BUSINESS CORPORATION",
+            "status": "Inactive",
+            "filing_date": "06/25/1981",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHANAEL D. COOK ENTERPRISES, LLC",
+            "dos_id": "6546082",
+            "entity_type": "DOMESTIC LIMITED LIABILITY COMPANY",
+            "status": "Active",
+            "filing_date": "07/27/2022",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHANI ENTERPRISES, INC.",
+            "dos_id": "1624259",
+            "entity_type": "DOMESTIC BUSINESS CORPORATION",
+            "status": "Inactive",
+            "filing_date": "03/27/1992",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHANIEL DEBENEDETTE ENTERPRISES, INC.",
+            "dos_id": "4968466",
+            "entity_type": "DOMESTIC BUSINESS CORPORATION",
+            "status": "Active",
+            "filing_date": "06/24/2016",
+            "search_term": "nathan enterprises llc"
+        }
+    ]
+}
