@@ -5,8 +5,22 @@ If there is no entry on a website for the contractor, please also provide eviden
 
 
 Company details:
-Khan Enterprise Construction
+nathan enterprises llc
 Websites:
+
+NYS Department of State NYSDOL Debarments
+https://apps.labor.ny.gov/EDList/searchPage.do
+ (search by name of subcontractor, subsidiary/affiliated companies and companies owned by officers) 
+There are 2 debarment lists here to search 
+-DOL (Department of Labor prevailing wage 5-year debarments) and 
+-WCB (Workers Compensation Board 1-year debarments).  
+We usually check using Employer Name or EIN (however employer name gives us a broader search result).
+
+NYS Department of State UCC Search
+https://ucc-efiling.dos.ny.gov/
+(search by name of subcontractor, its officers listed in Passport and affiliated/subsidiary companies, companies owned by officers)
+We currently query this website using the Lien Search option in the Additional Options section and search by Debtor Name.
+In the Advance Search Options section, we select Lien Type: Federal Tax Lien and leave all other options as is (copies of all lien and release must be downloaded and saved).
 
 NYS Department of Taxation and Finance
 https://uccfilings.dos.ny.gov/UCCSTW/
@@ -18,3 +32,7 @@ NYS Incorporation
 https://apps.dos.ny.gov/publicInquiry/
 (search by subcontractor's name)
 Is the subcontractor incorporated in the state or certified to do business in NYS. Is the incorporation currently active. Who is listed as the incorporator and is that individual one of the officers listed in Passport.
+
+NYS Unified Court Systems -County Filing and JDLS Search
+https://iapps.courts.state.ny.us/webccos/newyorkcc/countyFilingSearch
+We check Individuals and Corporations to see if there are any outstanding NYS Commissioner of Labor judgments associates with the subcontractor, its officers, and companies owned by the officers.

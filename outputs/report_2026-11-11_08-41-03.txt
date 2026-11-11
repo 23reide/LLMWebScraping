@@ -1,0 +1,44 @@
+The research on 'nathan enterprises llc' is complete. Below are the findings from the 5 requested NYS government websites:
+
+1. **NYS Department of Labor (Debarments):** No debarment records found.
+2. **NYS Department of State (UCC Search):** No federal tax liens found.
+3. **NYS Department of Taxation and Finance:** No outstanding tax warrants found.
+4. **NYS Incorporation:** 'NATHAN ENTERPRISES LLC' is active and domestic (Incorporated: 08/21/2012). The registered agent is Hugh Campbell.
+5. **NYS Unified Court Systems:** No commissioner of labor judgments found for the company or its registered agent, Hugh Campbell.
+
+Evidence of these searches has been saved to the provided PDF files.
+
+Attachments:
+
+results.md:
+# Research Results: nathan enterprises llc
+
+
+
+## NYS Department of Labor Debarments
+- Status: No entries found for 'nathan enterprises llc'.
+- Evidence: DOL_Search_Results.pdf
+
+
+
+
+## NYS Department of Taxation and Finance
+- Status: No entries found for 'nathan enterprises llc'.
+- Evidence: NYS_Tax_Search_Results.pdf
+
+
+
+## NYS Incorporation
+- Entity Name: NATHAN ENTERPRISES LLC
+- Status: Active
+- Date of Initial Filing: 08/21/2012
+- County: BRONX
+- Registered Agent: Hugh Campbell (676 EAT 234TH, BRONX, NY, 10466)
+- Evidence: NYS_Incorporation_Details.pdf
+
+
+
+
+## NYS Unified Court Systems
+- Status: No records found for 'nathan enterprises llc' or 'Hugh Campbell'.
+- Evidence: Court_Search_Results.pdf

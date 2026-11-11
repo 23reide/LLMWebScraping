@@ -19,7 +19,7 @@ def _build_agent(task: str) -> Agent:
 
     Isolated so tests can monkeypatch it without triggering a live run.
     """
-    llm = ChatGoogle(model="gemini-3.5-flash-lite")
+    llm = ChatGoogle(model="gemini-3.1-flash-lite")
     return Agent(
         task=task,
         llm=llm,
