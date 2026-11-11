@@ -36,7 +36,9 @@ def bu(monkeypatch, tmp_path):
 
     outputs = tmp_path / "outputs"
     monkeypatch.setattr(bu, "_OUTPUTS_DIR", outputs)
-    monkeypatch.setattr(bu, "_build_agent", lambda task: _FakeAgent(f"RESULT::{task}"))
+    monkeypatch.setattr(
+        bu, "_build_agent", lambda task, file_system_path: _FakeAgent(f"RESULT::{task}")
+    )
     return bu, outputs
 
 
@@ -49,6 +51,6 @@ def test_run_report_passes_task_through(bu):
 def test_run_report_writes_output_file(bu):
     module, outputs = bu
     module.run_report("do work")
-    files = list(outputs.glob("report_*.txt"))
+    files = list(outputs.glob("report_*/report_*.txt"))
     assert len(files) == 1
     assert files[0].read_text(encoding="utf-8") == "RESULT::do work"
