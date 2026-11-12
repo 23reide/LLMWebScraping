@@ -8,7 +8,7 @@ Hosting relies on Streamlit cloud environment (free) and [Browserbase](https://w
 
 Hosting also relies on a Gemini API key.
 
-Either API key can be swapped out in the Streamlit hosting settings.
+Either API key can be swapped out in the [Streamlit hosting settings](https://share.streamlit.io/?utm_source=streamlit&utm_medium=referral&utm_campaign=main&utm_content=-ss-streamlit-io-getstarted).
 
 ## Start UI Locally:
 
