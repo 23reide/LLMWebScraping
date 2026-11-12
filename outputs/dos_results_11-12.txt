@@ -1,0 +1,112 @@
+{
+    "status": "success",
+    "search_term": "nathan enterprises llc",
+    "total_results": 12,
+    "pages_reviewed": 3,
+    "all_pages_reviewed": true,
+    "notes": "All 12 matching records across 3 pages of results were successfully reviewed.",
+    "page_confirmation": "A total of 12 entities were found. If the entity name you are searching is not displayed please refine the search.",
+    "results": [
+        {
+            "company_name": "NATHAN ENTERPRISES LLC",
+            "dos_id": "4955729",
+            "entity_type": "DOMESTIC LIMITED LIABILITY COMPANY",
+            "status": "Active",
+            "filing_date": "05/18/2016",
+            "search_term": "nathan enterprises llc"
+        }
+    ],
+    "match_type": "exact",
+    "other_partial_matches": [
+        {
+            "company_name": "NATHAN ENTERPRISES, INC.",
+            "dos_id": "1843793",
+            "entity_type": "DOMESTIC BUSINESS CORPORATION",
+            "status": "Inactive",
+            "filing_date": "10/05/1994",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHAN'S ENTERPRISES LLC",
+            "dos_id": "6703975",
+            "entity_type": "DOMESTIC LIMITED LIABILITY COMPANY",
+            "status": "Active",
+            "filing_date": "06/07/2022",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHAN & COMPANY ENTERPRISES, LLC",
+            "dos_id": "3196947",
+            "entity_type": "DOMESTIC LIMITED LIABILITY COMPANY",
+            "status": "Active",
+            "filing_date": "03/12/2005",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHAN AND CHERIE ENTERPRISES LLC",
+            "dos_id": "4430263",
+            "entity_type": "DOMESTIC LIMITED LIABILITY COMPANY",
+            "status": "Active",
+            "filing_date": "07/19/2013",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "JONATHAN ENTERPRISES, INC.",
+            "dos_id": "161821",
+            "entity_type": "DOMESTIC BUSINESS CORPORATION",
+            "status": "Inactive",
+            "filing_date": "09/06/1961",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "JONATHAN'S ENTERPRISES, INC.",
+            "dos_id": "766579",
+            "entity_type": "DOMESTIC BUSINESS CORPORATION",
+            "status": "Inactive",
+            "filing_date": "04/09/1981",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "JONATHAN CULVER ENTERPRISES, INC.",
+            "dos_id": "1826075",
+            "entity_type": "DOMESTIC BUSINESS CORPORATION",
+            "status": "Active",
+            "filing_date": "08/08/1994",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHANAEL ENTERPRISES, INC.",
+            "dos_id": "2354703",
+            "entity_type": "DOMESTIC BUSINESS CORPORATION",
+            "status": "Inactive",
+            "filing_date": "06/19/1999",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHANAEL'S ENTERPRISES LLC",
+            "dos_id": "5173361",
+            "entity_type": "DOMESTIC LIMITED LIABILITY COMPANY",
+            "status": "Active",
+            "filing_date": "05/17/2017",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHANI ENTERPRISES, INC.",
+            "dos_id": "1624259",
+            "entity_type": "DOMESTIC BUSINESS CORPORATION",
+            "status": "Inactive",
+            "filing_date": "03/27/1992",
+            "search_term": "nathan enterprises llc"
+        },
+        {
+            "company_name": "NATHANIEL DEBENEDETTE ENTERPRISES, INC.",
+            "dos_id": "4968466",
+            "entity_type": "DOMESTIC BUSINESS CORPORATION",
+            "status": "Active",
+            "filing_date": "06/24/2016",
+            "search_term": "nathan enterprises llc"
+        }
+    ],
+    "source": "NYS Department of State Public Inquiry",
+    "source_url": "https://apps.dos.ny.gov/publicInquiry/"
+}

@@ -1,0 +1,26 @@
+{
+    "status": "success",
+    "search_term": "griffin contract dewatering llc",
+    "total_results": 1,
+    "pages_reviewed": 1,
+    "all_pages_reviewed": true,
+    "notes": "",
+    "page_confirmation": "County Filing & JDLS Search Results",
+    "results": [
+        {
+            "control_number": "3934810-1",
+            "index_number": "197",
+            "debtor_name": "76 ELEVENTH AVENUE PROPERTY OWNER LLC",
+            "creditor_name": "GRIFFIN CONTRACT DEWATERING LLC",
+            "book": "MECHANICS LIEN",
+            "docket_date": "12/19/2019",
+            "debtor_address": "76 11TH AVE",
+            "amount": "$40,808.33",
+            "search_term": "griffin contract dewatering llc"
+        }
+    ],
+    "match_type": "exact",
+    "other_partial_matches": [],
+    "source": "NY County Clerk Filing Search (judgments/liens)",
+    "source_url": "https://iapps.courts.state.ny.us/webccos/newyorkcc/countyFilingSearch"
+}
