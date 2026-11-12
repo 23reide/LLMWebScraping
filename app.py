@@ -11,8 +11,11 @@ sys.path.insert(0, str(_ROOT))
 sys.path.insert(0, str(_ROOT / "scripts"))
 
 import prompt_store as ps
+import new_nys_dos_search import search_nys_dos
 
 TASK_FILE = _ROOT / "outputs" / "_lastTask.txt"
+
+MODEL_SITES = {"NYS Incorporation": search_nys_dos}
 
 st.title("Contractor Due Diligence Report Builder")
 
@@ -24,6 +27,8 @@ company_info_input = st.text_area(
     + "\n\n •\tall companies disclosed by an officer of the subcontractor on their Principal Disclosure Form.",
     key="company_info",
 )
+
+company_name = st.text_input("Company name (for module searches)", key="company_name")
 
 # --- Site selection checkboxes (derived from ./prompts) ---------------------
 sites = ps.list_sites()
@@ -38,8 +43,13 @@ for site in sites:
 
 # --- Get Report -------------------------------------------------------------
 if st.button(label="Get report"):
+    module_sites = [s for s in selected_sites if s in MODULE_SITES]
+    agent_sites = [s for s in selected_sites if s not in MODULE_SITES]
+
     if not selected_sites:
         st.warning("Select at least one source before running a report.")
+    elif module_sites and not company_name.strip():
+        st.warning("Enter a company name for the module searches.")
     else:
         # Concatenate: system prompt, then each checked site's prompt, then the
         # company-info text area, with clear separators.
@@ -50,7 +60,7 @@ if st.button(label="Get report"):
             parts.append("Company details:")
             parts.append(company_info)
         parts.append("Websites:")
-        for site in selected_sites:
+        for site in agent_sites:
             parts.append("")
             parts.append(ps.get_prompt(site).strip())
         task = "\n".join(parts).strip() + "\n"
@@ -80,6 +90,15 @@ if st.button(label="Get report"):
                 "No Google API key found. Add GOOGLE_API_KEY to "
                 ".streamlit/secrets.toml (or the app's Secrets when deployed)."
             )
+            st.stop()
+
+        os.environ["GOOGLE_API_KEY"] = google_api_key
+        for s in module_sites:
+            st.subheader(s)
+            with st.spinner(f"Searching {s}..."):
+                st.json(MODULE_SITES[s](company_name.strip()))
+
+        if not agent_sites:
             st.stop()
 
         st.info("Running the browser agent — this can take several minutes...")
