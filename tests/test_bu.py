@@ -39,7 +39,7 @@ def bu(monkeypatch, tmp_path):
     monkeypatch.setattr(
         bu,
         "_build_agent",
-        lambda task, file_system_path, api_key=None: _FakeAgent(f"RESULT::{task}"),
+        lambda task, file_system_path, api_key=None, cdp_url=None: _FakeAgent(f"RESULT::{task}"),
     )
     return bu, outputs
 
@@ -50,17 +50,48 @@ def test_run_report_passes_task_through(bu):
     assert result == "RESULT::find the thing"
 
 
-def test_api_key_is_threaded_to_build_agent(bu, monkeypatch):
+def test_api_key_and_cdp_url_are_threaded_to_build_agent(bu, monkeypatch):
     module, _ = bu
     seen = {}
 
-    def _spy(task, file_system_path, api_key=None):
+    def _spy(task, file_system_path, api_key=None, cdp_url=None):
         seen["api_key"] = api_key
+        seen["cdp_url"] = cdp_url
         return _FakeAgent("ok")
 
     monkeypatch.setattr(module, "_build_agent", _spy)
-    module.run_report("task", api_key="SECRET-KEY-123")
+    module.run_report("task", api_key="SECRET-KEY-123", cdp_url="wss://remote/browser")
     assert seen["api_key"] == "SECRET-KEY-123"
+    assert seen["cdp_url"] == "wss://remote/browser"
+
+
+def test_browserbase_cdp_url_requires_key(bu, monkeypatch):
+    module, _ = bu
+    monkeypatch.delenv("BROWSERBASE_API_KEY", raising=False)
+    with pytest.raises(ValueError, match="BROWSERBASE_API_KEY"):
+        module.browserbase_cdp_url()
+
+
+def test_browserbase_cdp_url_creates_session(bu, monkeypatch):
+    module, _ = bu
+
+    class _FakeSession:
+        connect_url = "wss://connect.example.browserbase.com/abc"
+
+    class _FakeSessions:
+        def create(self):
+            return _FakeSession()
+
+    class _FakeBrowserbase:
+        def __init__(self, api_key=None):
+            assert api_key == "bb_test_key"
+            self.sessions = _FakeSessions()
+
+    import browserbase
+
+    monkeypatch.setattr(browserbase, "Browserbase", _FakeBrowserbase)
+    url = module.browserbase_cdp_url("bb_test_key")
+    assert url == "wss://connect.example.browserbase.com/abc"
 
 
 def test_run_report_writes_output_file(bu):
@@ -98,7 +129,9 @@ def test_start_report_captures_errors(bu, monkeypatch):
             raise RuntimeError("agent exploded")
 
     monkeypatch.setattr(
-        module, "_build_agent", lambda task, file_system_path, api_key=None: _BoomAgent()
+        module,
+        "_build_agent",
+        lambda task, file_system_path, api_key=None, cdp_url=None: _BoomAgent(),
     )
 
     run = module.start_report("will fail")
@@ -129,7 +162,9 @@ def test_start_report_captures_nonpropagating_logs(bu, monkeypatch):
             return _FakeHistory("done")
 
     monkeypatch.setattr(
-        module, "_build_agent", lambda task, file_system_path, api_key=None: _LoggingAgent()
+        module,
+        "_build_agent",
+        lambda task, file_system_path, api_key=None, cdp_url=None: _LoggingAgent(),
     )
 
     run = module.start_report("log please")
@@ -164,7 +199,7 @@ def test_zip_run_evidence_packages_all_files(bu, monkeypatch):
     monkeypatch.setattr(
         module,
         "_build_agent",
-        lambda task, file_system_path, api_key=None: _EvidenceAgent(file_system_path),
+        lambda task, file_system_path, api_key=None, cdp_url=None: _EvidenceAgent(file_system_path),
     )
 
     run = module.start_report("gather")

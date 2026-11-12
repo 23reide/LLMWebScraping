@@ -10,7 +10,7 @@ from pathlib import Path
 from queue import Queue
 from typing import Iterator, Optional
 
-from browser_use import Agent, ChatGoogle
+from browser_use import Agent, BrowserSession, ChatGoogle
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -25,13 +25,45 @@ _OUTPUTS_DIR = _ROOT / "outputs"
 _DONE = object()
 
 
-def _build_agent(task: str, file_system_path: str, api_key: Optional[str] = None) -> Agent:
+def browserbase_cdp_url(api_key: Optional[str] = None) -> str:
+    """Create a Browserbase session and return its CDP connect URL.
+
+    ``api_key`` falls back to the ``BROWSERBASE_API_KEY`` environment variable.
+    The project is inferred from the API key by Browserbase.
+
+    Used by the published app so the browser runs on Browserbase's
+    infrastructure instead of the (browserless) Streamlit Cloud container.
+    """
+    from browserbase import Browserbase
+
+    key = api_key or os.getenv("BROWSERBASE_API_KEY")
+    if not key:
+        raise ValueError("BROWSERBASE_API_KEY is required to use a Browserbase browser.")
+
+    bb = Browserbase(api_key=key)
+    session = bb.sessions.create()
+    return session.connect_url
+
+
+def _build_agent(
+    task: str,
+    file_system_path: str,
+    api_key: Optional[str] = None,
+    cdp_url: Optional[str] = None,
+) -> Agent:
     """Construct the browser-use Agent with the configuration known to work.
+
+    ``cdp_url`` connects to a remote browser (e.g. Browserbase) over CDP instead
+    of launching a local Chromium. When ``None`` the agent launches a local
+    browser as before — the right behaviour for local development.
 
     Isolated so tests can monkeypatch it without triggering a live run.
     """
     key = api_key or os.getenv("GOOGLE_API_KEY") or None
     llm = ChatGoogle(model="gemini-3.1-flash-lite", api_key=key)
+
+    browser_session = BrowserSession(cdp_url=cdp_url) if cdp_url else None
+
     return Agent(
         task=task,
         llm=llm,
@@ -39,12 +71,18 @@ def _build_agent(task: str, file_system_path: str, api_key: Optional[str] = None
         step_timeout=600,
         use_vision=False,
         file_system_path=file_system_path,
+        browser_session=browser_session,
     )
 
 
-async def _run_agent(task: str, file_system_path: str, api_key: Optional[str] = None) -> str:
+async def _run_agent(
+    task: str,
+    file_system_path: str,
+    api_key: Optional[str] = None,
+    cdp_url: Optional[str] = None,
+) -> str:
     """Run the agent for ``task`` and return its final result as a string."""
-    agent = _build_agent(task, file_system_path, api_key)
+    agent = _build_agent(task, file_system_path, api_key, cdp_url)
     history = await agent.run()
     return str(history.final_result())
 
@@ -63,16 +101,19 @@ def _write_result(run_dir: Path, stamp: str, result: str) -> None:
     (run_dir / f"report_{stamp}.txt").write_text(result, encoding="utf-8")
 
 
-def run_report(task: str, api_key: Optional[str] = None) -> str:
+def run_report(
+    task: str, api_key: Optional[str] = None, cdp_url: Optional[str] = None
+) -> str:
     """Run the agent synchronously for ``task`` and return the result string.
 
     Creates a timestamped run folder under ``./outputs``, points the agent's
     file system at it so all saved evidence (PDFs/screenshots/markdown) lands
     there, and writes the final result text alongside it. ``api_key`` is passed
-    through to ``ChatGoogle`` (see :func:`_build_agent`).
+    through to ``ChatGoogle`` and ``cdp_url`` selects a remote browser (see
+    :func:`_build_agent`).
     """
     run_dir, stamp = _new_run_dir()
-    result = asyncio.run(_run_agent(task, str(run_dir), api_key))
+    result = asyncio.run(_run_agent(task, str(run_dir), api_key, cdp_url))
     _write_result(run_dir, stamp, result)
     return result
 
@@ -132,9 +173,15 @@ class ReportRun:
     identically whether Streamlit runs locally or on a hosted server.
     """
 
-    def __init__(self, task: str, api_key: Optional[str] = None):
+    def __init__(
+        self,
+        task: str,
+        api_key: Optional[str] = None,
+        cdp_url: Optional[str] = None,
+    ):
         self.task = task
         self.api_key = api_key
+        self.cdp_url = cdp_url
         self.queue: "Queue" = Queue()
         self.result: Optional[str] = None
         self.error: Optional[BaseException] = None
@@ -193,7 +240,7 @@ class ReportRun:
             run_dir, stamp = _new_run_dir()
             self.run_dir = run_dir
             # Inline the body of run_report so we keep the run_dir for evidence.
-            result = asyncio.run(_run_agent(self.task, str(run_dir), self.api_key))
+            result = asyncio.run(_run_agent(self.task, str(run_dir), self.api_key, self.cdp_url))
             _write_result(run_dir, stamp, result)
             self.result = result
         except BaseException as exc:  # capture so the UI thread can surface it
@@ -206,9 +253,11 @@ class ReportRun:
             self.queue.put(_DONE)
 
 
-def start_report(task: str, api_key: Optional[str] = None) -> ReportRun:
+def start_report(
+    task: str, api_key: Optional[str] = None, cdp_url: Optional[str] = None
+) -> ReportRun:
     """Start a report on a background thread and return a handle to stream it."""
-    return ReportRun(task, api_key).start()
+    return ReportRun(task, api_key, cdp_url).start()
 
 
 def evidence_dir(run_dir: Path) -> Path:

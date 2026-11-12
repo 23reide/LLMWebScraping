@@ -14,6 +14,22 @@ import prompt_store as ps
 
 TASK_FILE = _ROOT / "outputs" / "_lastTask.txt"
 
+
+def _secret(name: str) -> str | None:
+    """Read a config value from Streamlit secrets, then the environment.
+
+    Secrets come from .streamlit/secrets.toml locally or the app's Secrets box
+    when deployed; the env fallback covers plain local runs via .env. Returns
+    None when the value is unset (st.secrets raises if no secrets file exists).
+    """
+    value = None
+    try:
+        value = st.secrets.get(name)
+    except Exception:
+        value = None
+    return value or os.environ.get(name)
+
+
 st.title("Contractor Due Diligence Report Builder")
 
 company_info_input = st.text_area(
@@ -61,20 +77,10 @@ if st.button(label="Get report"):
 
         import bu  # imported lazily so the UI loads even if deps are missing
 
-        # Resolve the Google API key: prefer Streamlit secrets (set in
+        # Resolve the Google API key from Streamlit secrets (set in
         # .streamlit/secrets.toml locally, or the app's Secrets box when
-        # deployed), then fall back to the environment / .env for plain local
-        # runs. Passing it explicitly means the key is found when published,
-        # where .env files are not available.
-        google_api_key = None
-        try:
-            google_api_key = st.secrets.get("GOOGLE_API_KEY")
-        except Exception:
-            # st.secrets raises if no secrets file exists; fall back to env.
-            google_api_key = None
-        if not google_api_key:
-            google_api_key = os.environ.get("GOOGLE_API_KEY")
-
+        # deployed), falling back to the environment / .env for local runs.
+        google_api_key = _secret("GOOGLE_API_KEY")
         if not google_api_key:
             st.error(
                 "No Google API key found. Add GOOGLE_API_KEY to "
@@ -82,12 +88,27 @@ if st.button(label="Get report"):
             )
             st.stop()
 
+        # Use a remote Browserbase browser only when BROWSERBASE_API_KEY is set.
+        # On Streamlit Cloud (no local Chromium) you set that secret, so the app
+        # runs the browser on Browserbase. Locally, just leave the secret unset
+        # and the agent launches a local browser instead — no extra config.
+        cdp_url = None
+        browserbase_api_key = _secret("BROWSERBASE_API_KEY")
+        if browserbase_api_key:
+            try:
+                with st.spinner("Starting a Browserbase browser session..."):
+                    cdp_url = bu.browserbase_cdp_url(browserbase_api_key)
+                st.caption("Using a remote Browserbase browser for this run.")
+            except Exception as exc:
+                st.error(f"Could not start a Browserbase session: {exc}")
+                st.stop()
+
         st.info("Running the browser agent — this can take several minutes...")
 
         # Run the agent on a background thread and stream its console output
         # (logging + stdout/stderr) into a live-updating area. This is all
         # in-process, so it behaves the same locally or on a hosted server.
-        run = bu.start_report(task, api_key=google_api_key)
+        run = bu.start_report(task, api_key=google_api_key, cdp_url=cdp_url)
 
         st.subheader("Console output")
         # Fixed-height, scrollable box so long logs don't push the page down.

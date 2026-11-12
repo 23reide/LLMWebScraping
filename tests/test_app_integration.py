@@ -72,11 +72,39 @@ def test_add_source_creates_checkbox(isolated_prompts):
     assert "Brand New Site" in labels
 
 
-def test_get_report_runs_with_mocked_agent(isolated_prompts, monkeypatch):
-    # Patch the agent module so no live run happens.
+def test_get_report_runs_with_mocked_agent(isolated_prompts, monkeypatch, tmp_path):
+    # The app uses the streaming API (start_report) plus secret resolution and a
+    # possible Browserbase session. Patch all of that so no live run happens and
+    # the local (non-Browserbase) path is exercised deterministically.
     import bu
 
-    monkeypatch.setattr(bu, "run_report", lambda task: f"MOCK REPORT for len={len(task)}")
+    # Provide a Google key via env and ensure Browserbase is not triggered.
+    monkeypatch.setenv("GOOGLE_API_KEY", "test-google-key")
+    monkeypatch.delenv("BROWSERBASE_API_KEY", raising=False)
+
+    run_dir = tmp_path / "report_mock"
+    run_dir.mkdir()
+
+    class _FakeRun:
+        def __init__(self):
+            self.result = "MOCK REPORT"
+            self.error = None
+            self.run_dir = run_dir
+
+        def is_alive(self):
+            return False  # finish immediately, no streaming loop needed
+
+        def stream(self, timeout=0.2):
+            return iter(())  # no log lines
+
+    monkeypatch.setattr(bu, "start_report", lambda task, api_key=None, cdp_url=None: _FakeRun())
+    # Neutralize Browserbase: even if a BROWSERBASE_API_KEY secret exists locally,
+    # this test must not open a real remote session.
+    monkeypatch.setattr(bu, "browserbase_cdp_url", lambda api_key=None: "wss://fake/cdp")
+    # Return a ready-made (minimal valid) zip path for the download button.
+    zip_path = tmp_path / "evidence.zip"
+    zip_path.write_bytes(b"PK\x05\x06" + b"\x00" * 18)  # empty-zip EOCD record
+    monkeypatch.setattr(bu, "zip_run_evidence", lambda rd: zip_path)
 
     at = AppTest.from_file(APP_PATH).run()
     # Select the first site.
