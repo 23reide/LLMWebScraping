@@ -149,10 +149,6 @@ def verify_search(history, company_name, result):
     if not any(action in actions for action in ("click", "send_keys")):
         return False, "The agent did not submit the search."
 
-    # The agent must extract information from the results page.
-    if "extract" not in actions:
-        return False, "The agent did not extract information from the results page."
-
     # Confirm that the exact company name appeared in an input action.
     model_actions = history.model_actions()
 
@@ -218,6 +214,30 @@ def verify_search(history, company_name, result):
 # Main asynchronous search function
 # --------------------------------------------------
 
+def normalize_name(name):
+    name = name.lower().replace("&", "and")
+    name = re.sub(r"[^a-z0-9 ]", "", name)
+    return " ".join(name.split())
+
+
+def apply_exact_match(result, company_name):
+    target = normalize_name(company_name)
+
+    exact = [
+        r for r in result["results"]
+        if normalize_name(r["company_name"]) == target
+    ]
+
+    result["match_type"] = "exact" if exact else "partial_only"
+
+    if exact:
+        result["other_partial_matches"] = [
+            r for r in result["results"] if r not in exact
+        ]
+        result["results"] = exact
+
+    return result
+
 async def search_nys_dos_async(company_name):
 
     company_name = company_name.strip()
@@ -266,7 +286,7 @@ async def search_nys_dos_async(company_name):
     9. Click the actual Search button to submit the form.
     10. Wait for the results page to load.
     11. Verify that the results page actually appeared.
-    12. Use the extract action to read the results page.
+    12. Read the results page.
     13. Collect the matching records and their details.
     14. If possible, select the option to display all results
         on one page.
@@ -353,7 +373,7 @@ async def search_nys_dos_async(company_name):
                 )
 
                 if valid:
-                    return result
+                    return apply_exact_match(result, company_name)
 
                 last_error = verification_error
 
