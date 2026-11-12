@@ -1,6 +1,16 @@
 # UI
 
-Start UI:
+## Access Hosted UI:
+
+Hosted at: https://llmwebscraping-ddc.streamlit.app/
+
+Hosting relies on Streamlit cloud environment (free) and [Browserbase](https://www.browserbase.com/orgs/jtqrdos3gsga/45a513f9-edb8-4899-a3bf-e5be370217eb/home) remote browser API (free but very limited to 1 hour / month)
+
+Hosting also relies on a Gemini API key.
+
+Either API key can be swapped out in the Streamlit hosting settings.
+
+## Start UI Locally:
 
 ```
 # Run from project root
