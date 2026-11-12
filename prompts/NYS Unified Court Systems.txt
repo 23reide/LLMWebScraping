@@ -1,3 +1,24 @@
 NYS Unified Court Systems -County Filing and JDLS Search
 https://iapps.courts.state.ny.us/webccos/newyorkcc/countyFilingSearch
 We check Individuals and Corporations to see if there are any outstanding NYS Commissioner of Labor judgments associates with the subcontractor, its officers, and companies owned by the officers.
+
+1. Navigate to the official website.
+2. Inspect the page and wait for the search form to load.
+3. If the page is blank, wait 3 seconds and inspect it again.
+4. If the page is still blank, stop and return status "error".
+   Do not repeatedly reload the same blank page.
+5. Enter the exact company name provided above in the Name field.
+   Leave every other search option as it is.
+6. Do NOT shorten the name, remove legal suffixes,
+   try alternative spellings, or run additional searches.
+7. Click the "I am a human" verification checkbox and wait 20 seconds
+   for it to show as verified. Wait until the verification finishes then continue.
+8. If an image puzzle or other challenge appears instead of a simple
+   checkbox, stop and return status "error" with the note
+   "verification challenge". Do not try to solve it. 
+9. Click the actual Search button to submit the form.
+10. Wait for the results page to load.
+11. Verify that the results page actually appeared.
+12. Do not claim that pages were reviewed unless you actually inspected them.
+13. If the site shows a message that nothing was found, quote it exactly
+    in page_confirmation.
